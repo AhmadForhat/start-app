@@ -1,6 +1,6 @@
 {
-  "short_name": "Ahmad",
-  "name": "Ahmad Forhat",
+  "short_name": "Start",
+  "name": "Start App",
   "icons": [
     {
       "src": "logo192.png",
@@ -30,18 +30,6 @@
 			"name": "Home",
 			"short_name": "Home",
 			"url": "/",
-			"icons": [
-				{
-					"src": "logo192.png",
-					"type": "image/png",
-					"sizes": "192x192"
-				}
-			]
-		},
-		{
-			"name": "Login",
-			"short_name": "Login",
-			"url": "/login",
 			"icons": [
 				{
 					"src": "logo192.png",
