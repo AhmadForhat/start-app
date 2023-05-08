@@ -1,20 +1,20 @@
 import { Results } from 'Views/Results';
 import { Questions } from 'Views/Questions';
-import { Home } from 'Views/Home';
 import { WalkingThrough } from 'Views/WalkingThrough';
+import { SelectFields } from 'Views/SelectFields';
 
 export const publicPages = [
 	{
-		id: 'home',
-		name: 'Home',
-		path: '/',
-		element: Home,
-	},
-	{
 		id: 'walking-through',
 		name: 'Walking through',
-		path: '/walking-through',
+		path: '/',
 		element: WalkingThrough,
+	},
+	{
+		id: 'select-fields',
+		name: 'Select Fields',
+		path: '/select-fields',
+		element: SelectFields,
 	},
 	{
 		id: 'questions',
