@@ -15,7 +15,6 @@ export const Container = styled.button<ContainerProps>`
 	font-size: ${tokens.fontSize.medium};
 	text-decoration: none;
 	line-height: 22px;
-	border-radius: 6px;
 	border: 2px solid ${tokens.color.primary.lighter};
 	padding: 16px 24px;
 	background-color: ${tokens.color.primary.default};
@@ -23,7 +22,6 @@ export const Container = styled.button<ContainerProps>`
 	border: none;
 	color: ${({ variant }) =>
 		variant === 'label' ? tokens.color.primary.default : 'white'};
-	border-radius: 10px;
 	transition: all 0.5s;
 	width: ${({ fullSize }) => (fullSize ? '100%' : 'fit-content')};
 	cursor: pointer;
