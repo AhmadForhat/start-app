@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import img from '../../filesrc/images/example.png';
 import {
 	Container,
 	ContainerDescription,
 	Description,
 	Title,
+	Image,
 } from './WalkingThrough.styles';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'designSystem';
@@ -17,6 +19,7 @@ export const WalkingThrough = () => {
 
 	const stepProps = {
 		getCertification: {
+			image: img,
 			title: 'GET YOUR FREE CERTIFICATION',
 			description:
 				'Do a knowledge practice test in your field and become an expert',
@@ -42,6 +45,7 @@ export const WalkingThrough = () => {
 	return (
 		<Container data-testid="walking-through">
 			<ContainerDescription>
+				{stepProps?.image && <Image src={stepProps?.image} alt="Your Image" />}
 				<Title>{stepProps?.title}</Title>
 				<Description>{stepProps?.description}</Description>
 			</ContainerDescription>
