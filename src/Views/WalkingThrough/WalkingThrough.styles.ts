@@ -9,6 +9,7 @@ export const ContainerIcon = styled.div`
 	justify-content: flex-end;
 
 	.close-icon {
+		margin-top: 78px;
 		width: 24px;
 		height: 24px;
 	}
