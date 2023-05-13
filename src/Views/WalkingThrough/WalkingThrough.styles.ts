@@ -9,6 +9,7 @@ export const ContainerIcon = styled.div`
 	justify-content: flex-end;
 
 	.close-icon {
+		margin-top: 78px;
 		width: 24px;
 		height: 24px;
 	}
@@ -20,7 +21,6 @@ export const ContainerPageInfo = styled.div`
 	background-color: #e9e7dd;
 	margin: 36px auto 48px auto;
 	border-radius: 30px;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
