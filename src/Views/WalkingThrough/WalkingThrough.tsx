@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import {
 	Container,
 	ContainerDescription,
-	ContainerIcon,
-	ContainerSteps,
-	Square,
 	ContainerPageInfo,
+	ContainerIcon,
 	Description,
 	Title,
+	ContainerSteps,
+	Square,
 } from './WalkingThrough.styles';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'designSystem';
