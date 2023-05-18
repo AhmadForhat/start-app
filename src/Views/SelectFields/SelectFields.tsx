@@ -1,12 +1,17 @@
 import React from 'react';
-
+import { Container, PageTitle, PageTitleWrapper } from './SelectFields.styles';
 import { DropdownSelect } from 'designSystem/atoms/DropdownSelect';
+import { BackIcon, Html } from 'designSystem/icons';
 
 export const SelectFields = () => {
 	return (
-		<div>
-			<h2>Title</h2>
+		<Container>
+			<PageTitle>
+				<BackIcon className="back-icon" />
+				<PageTitle className="page-title">FIELD</PageTitle>
+			</PageTitle>
+			<PageTitleWrapper />
 			<DropdownSelect />
-		</div>
+		</Container>
 	);
 };
