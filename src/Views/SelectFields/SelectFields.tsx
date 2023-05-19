@@ -1,15 +1,26 @@
 import React from 'react';
-import { Container, PageTitle, PageTitleWrapper } from './SelectFields.styles';
+import {
+	Container,
+	ContainerTitle,
+	PageTitleWrapper,
+	Title,
+} from './SelectFields.styles';
 import { DropdownSelect } from 'designSystem/atoms/DropdownSelect';
-import { BackIcon, Html } from 'designSystem/icons';
+import { BackIcon } from 'designSystem/icons';
+import { useNavigate } from 'react-router-dom';
 
 export const SelectFields = () => {
+	const navigate = useNavigate();
+	const goBack = () => navigate('/');
+
 	return (
 		<Container>
-			<PageTitle>
-				<BackIcon className="back-icon" />
-				<PageTitle className="page-title">FIELD</PageTitle>
-			</PageTitle>
+			<ContainerTitle>
+				<button onClick={goBack}>
+					<BackIcon className="back-icon" />
+				</button>
+				<Title className="page-title">FIELD</Title>
+			</ContainerTitle>
 			<PageTitleWrapper />
 			<DropdownSelect />
 		</Container>
