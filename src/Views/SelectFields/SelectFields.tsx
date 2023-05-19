@@ -3,11 +3,27 @@ import { Container } from './SelectFields.styles';
 import { DropdownSelect } from 'designSystem/atoms/DropdownSelect';
 import { Navbar } from 'designSystem/molecules/Navbar';
 
+const BUSINESS_ENUM = {
+	title: 'BUSINESS',
+};
+
+const TECHNOLOGY_ENUM = {
+	title: 'TECHNOLOGY',
+	sublist: [
+		'Python Developer',
+		'Java Developer',
+		'System Analyst',
+		'Cyber Security Analyst',
+		'Database Developer',
+	],
+};
+
 export const SelectFields = () => {
 	return (
 		<Container>
 			<Navbar title="FIELD" />
-			<DropdownSelect />
+			<DropdownSelect {...BUSINESS_ENUM} />
+			<DropdownSelect {...TECHNOLOGY_ENUM} />
 		</Container>
 	);
 };
