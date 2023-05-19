@@ -24,11 +24,12 @@ export const Title = styled.h2`
 	font-family: 'Myriad Pro', Arial, sans-serif;
 	color: black;
 	border: none;
-	margin-right: 24px;
 `;
 
 export const SpacerTitle = styled.div`
 	border-top: 0.01px solid #ddd;
 	margin-bottom: 15px;
 	margin-top: 8px;
+	margin-right: -3.5%;
+	margin-left: -3.5%;
 `;
