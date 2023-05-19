@@ -2,6 +2,7 @@ import { Results } from 'Views/Results';
 import { Questions } from 'Views/Questions';
 import { WalkingThrough } from 'Views/WalkingThrough';
 import { SelectFields } from 'Views/SelectFields';
+import { SelectLevel } from 'Views/SelectLevel';
 
 export const publicPages = [
 	{
@@ -15,6 +16,12 @@ export const publicPages = [
 		name: 'Select Fields',
 		path: '/select-fields',
 		element: SelectFields,
+	},
+	{
+		id: 'select-level',
+		name: 'Select Level',
+		path: '/select-level',
+		element: SelectLevel,
 	},
 	{
 		id: 'questions',
