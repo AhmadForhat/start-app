@@ -13,3 +13,4 @@ export * from './ToDo';
 export * from './NoData';
 export * from './ServerDown';
 export * from './CloseIcon';
+export * from './BackIcon';
