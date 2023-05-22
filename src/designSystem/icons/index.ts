@@ -17,3 +17,4 @@ export * from './BackIcon';
 export * from './DownIcon';
 export * from './UpIcon';
 export * from './NetworkIcon';
+export * from './CheckIcon';

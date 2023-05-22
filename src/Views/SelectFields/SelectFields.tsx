@@ -5,6 +5,7 @@ import { Navbar } from 'designSystem/molecules/Navbar';
 
 const BUSINESS_ENUM = {
 	title: 'BUSINESS',
+	sublist: ['Example1', 'Example2'],
 };
 
 const TECHNOLOGY_ENUM = {
@@ -19,12 +20,22 @@ const TECHNOLOGY_ENUM = {
 };
 const DIGITAL_MARKETING_ENUM = {
 	title: 'DIGITAL MARKETING',
+	sublist: ['Example1'],
 };
 const HOSPITALITY_ENUM = {
 	title: 'HOSPITALITY',
+	sublist: [
+		'Example1',
+		'Example2',
+		'Example3',
+		'Example4',
+		'Example5',
+		'Example6',
+	],
 };
 const SOFT_SKILLS_ENUM = {
 	title: 'SOFT SKILLS',
+	sublist: ['Example1', 'Example2', 'Example3'],
 };
 
 export const SelectFields = () => {

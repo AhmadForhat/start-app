@@ -10,6 +10,7 @@ import {
 import { DownIcon } from 'designSystem/icons';
 import { UpIcon } from 'designSystem/icons';
 import { NetworkIcon } from 'designSystem/icons';
+import { CheckIcon } from 'designSystem/icons';
 
 interface IDropdownSelect {
 	title: string;
@@ -21,9 +22,11 @@ export const DropdownSelect = ({
 	sublist,
 }: IDropdownSelect): JSX.Element => {
 	const [isOpen, setOpen] = useState(false);
+	const [selectedItem, setSelectedItem] = useState<string | null>(null);
 	const isOpenAndHaveSublist = isOpen && !!sublist?.length;
 
 	const toggleOpen = () => setOpen(!isOpen);
+	const selectItem = (item: string) => setSelectedItem(item);
 
 	return (
 		<Container>
@@ -31,10 +34,17 @@ export const DropdownSelect = ({
 				onClick={toggleOpen}
 				isOpen={isOpenAndHaveSublist}
 			>
-				<ContainerIcon>
-					<NetworkIcon className="network-icon" />
+				<ContainerIcon onClick={toggleOpen} isOpen={isOpenAndHaveSublist}>
+					{isOpenAndHaveSublist ? (
+						<NetworkIcon className="network-icon" color="white" />
+					) : (
+						<NetworkIcon className="network-icon" color="#C5002B" />
+					)}
 				</ContainerIcon>
-				<ContainerTitleAction>
+				<ContainerTitleAction
+					onClick={toggleOpen}
+					isOpen={isOpenAndHaveSublist}
+				>
 					<p>{title}</p>
 				</ContainerTitleAction>
 				{isOpenAndHaveSublist ? (
@@ -46,7 +56,14 @@ export const DropdownSelect = ({
 			{isOpenAndHaveSublist && (
 				<List className="children">
 					{sublist.map((item: string) => (
-						<Item key={item}>{item}</Item>
+						<Item
+							key={item}
+							selected={item === selectedItem}
+							onClick={() => selectItem(item)}
+						>
+							{item}
+							<CheckIcon className="check-icon" />
+						</Item>
 					))}
 				</List>
 			)}
