@@ -14,3 +14,6 @@ export * from './NoData';
 export * from './ServerDown';
 export * from './CloseIcon';
 export * from './BackIcon';
+export * from './DownIcon';
+export * from './UpIcon';
+export * from './NetworkIcon';

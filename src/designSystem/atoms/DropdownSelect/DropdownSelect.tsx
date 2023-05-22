@@ -7,6 +7,9 @@ import {
 	Item,
 	List,
 } from './DropdownSelect.styles';
+import { DownIcon } from 'designSystem/icons';
+import { UpIcon } from 'designSystem/icons';
+import { NetworkIcon } from 'designSystem/icons';
 
 interface IDropdownSelect {
 	title: string;
@@ -28,10 +31,17 @@ export const DropdownSelect = ({
 				onClick={toggleOpen}
 				isOpen={isOpenAndHaveSublist}
 			>
-				<ContainerIcon>Icon</ContainerIcon>
+				<ContainerIcon>
+					<NetworkIcon className="network-icon" />
+				</ContainerIcon>
 				<ContainerTitleAction>
 					<p>{title}</p>
 				</ContainerTitleAction>
+				{isOpenAndHaveSublist ? (
+					<UpIcon className="up-down-icon" />
+				) : (
+					<DownIcon className="up-down-icon" />
+				)}
 			</ContainerCollapseButton>
 			{isOpenAndHaveSublist && (
 				<List className="children">

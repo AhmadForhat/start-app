@@ -17,6 +17,15 @@ const TECHNOLOGY_ENUM = {
 		'Database Developer',
 	],
 };
+const DIGITAL_MARKETING_ENUM = {
+	title: 'DIGITAL MARKETING',
+};
+const HOSPITALITY_ENUM = {
+	title: 'HOSPITALITY',
+};
+const SOFT_SKILLS_ENUM = {
+	title: 'SOFT SKILLS',
+};
 
 export const SelectFields = () => {
 	return (
@@ -24,6 +33,9 @@ export const SelectFields = () => {
 			<Navbar title="FIELD" />
 			<DropdownSelect {...BUSINESS_ENUM} />
 			<DropdownSelect {...TECHNOLOGY_ENUM} />
+			<DropdownSelect {...DIGITAL_MARKETING_ENUM} />
+			<DropdownSelect {...HOSPITALITY_ENUM} />
+			<DropdownSelect {...SOFT_SKILLS_ENUM} />
 		</Container>
 	);
 };
