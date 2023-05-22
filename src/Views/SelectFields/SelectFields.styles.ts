@@ -5,5 +5,10 @@ export const Container = styled.div`
 `;
 
 export const ContainerLogo = styled.div`
-	width: 50px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	img {
+		width: 50%;
+	}
 `;
