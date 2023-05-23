@@ -51,7 +51,7 @@ export const DropdownSelect = ({
 				)}
 			</ContainerCollapseButton>
 			{isOpenAndHaveSublist && (
-				<List className="children">
+				<List>
 					{sublist.map((item: string) => (
 						<Item
 							key={item}

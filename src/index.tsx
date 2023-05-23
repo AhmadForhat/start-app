@@ -11,6 +11,7 @@ import { GlobalStyle } from 'designSystem/themes/GlobalStyle';
 import { AuthProvider } from 'context/Auth';
 import { ThemeProvider } from 'styled-components';
 import { tokens } from 'designSystem/themes/tokens';
+import { SelectedFieldProvider } from 'context/SelectedFields';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement,
@@ -21,11 +22,13 @@ root.render(
 		<ErrorBoundary FallbackComponent={ErrorFallback}>
 			<ThemeProvider theme={tokens}>
 				<GlobalStyle />
-				<AuthProvider>
-					<RecoilRoot>
-						<Router />
-					</RecoilRoot>
-				</AuthProvider>
+				<SelectedFieldProvider>
+					<AuthProvider>
+						<RecoilRoot>
+							<Router />
+						</RecoilRoot>
+					</AuthProvider>
+				</SelectedFieldProvider>
 			</ThemeProvider>
 		</ErrorBoundary>
 	</React.StrictMode>,
