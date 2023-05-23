@@ -16,5 +16,6 @@ export * from './CloseIcon';
 export * from './BackIcon';
 export * from './DownIcon';
 export * from './UpIcon';
-export * from './NetworkIcon';
+export * from './ComputerWhite';
+export * from './Computer';
 export * from './CheckIcon';

@@ -21,6 +21,7 @@ export const ContainerCollapseButton = styled.button<IContainerCollapseButton>`
 	margin: 15px auto;
 	display: flex;
 	transition: all 0.5s;
+
 	.up-down-icon {
 		width: 24px;
 		height: 24px;
@@ -35,10 +36,6 @@ export const ContainerIcon = styled.button<IContainerCollapseButton>`
 	border: none;
 	border-right: 1px solid ${({ isOpen }) => (!isOpen ? 'black' : 'white')};
 	transition: all 0.5s;
-	.network-icon {
-		width: 45px;
-		margin-top: 10%;
-	}
 `;
 
 export const ContainerTitleAction = styled.button<IContainerCollapseButton>`

@@ -9,8 +9,9 @@ import {
 } from './DropdownSelect.styles';
 import { DownIcon } from 'designSystem/icons';
 import { UpIcon } from 'designSystem/icons';
-import { NetworkIcon } from 'designSystem/icons';
 import { CheckIcon } from 'designSystem/icons';
+import { Computer } from 'designSystem/icons';
+import { ComputerWhite } from 'designSystem/icons';
 
 interface IDropdownSelect {
 	title: string;
@@ -35,11 +36,7 @@ export const DropdownSelect = ({
 				isOpen={isOpenAndHaveSublist}
 			>
 				<ContainerIcon onClick={toggleOpen} isOpen={isOpenAndHaveSublist}>
-					{isOpenAndHaveSublist ? (
-						<NetworkIcon className="network-icon" color="white" />
-					) : (
-						<NetworkIcon className="network-icon" color="#C5002B" />
-					)}
+					{isOpenAndHaveSublist ? <ComputerWhite /> : <Computer />}
 				</ContainerIcon>
 				<ContainerTitleAction
 					onClick={toggleOpen}
