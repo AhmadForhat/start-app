@@ -6,6 +6,7 @@ import { Logo } from 'designSystem/atoms/Logo';
 
 const BUSINESS_ENUM = {
 	title: 'BUSINESS',
+	sublist: ['Example1', 'Example2'],
 };
 
 const TECHNOLOGY_ENUM = {
@@ -18,6 +19,25 @@ const TECHNOLOGY_ENUM = {
 		'Database Developer',
 	],
 };
+const DIGITAL_MARKETING_ENUM = {
+	title: 'DIGITAL MARKETING',
+	sublist: ['Example1'],
+};
+const HOSPITALITY_ENUM = {
+	title: 'HOSPITALITY',
+	sublist: [
+		'Example1',
+		'Example2',
+		'Example3',
+		'Example4',
+		'Example5',
+		'Example6',
+	],
+};
+const SOFT_SKILLS_ENUM = {
+	title: 'SOFT SKILLS',
+	sublist: ['Example1', 'Example2', 'Example3'],
+};
 
 export const SelectFields = () => {
 	return (
@@ -29,6 +49,9 @@ export const SelectFields = () => {
 			<h2>SELECT CATEGORY</h2>
 			<DropdownSelect {...BUSINESS_ENUM} />
 			<DropdownSelect {...TECHNOLOGY_ENUM} />
+			<DropdownSelect {...DIGITAL_MARKETING_ENUM} />
+			<DropdownSelect {...HOSPITALITY_ENUM} />
+			<DropdownSelect {...SOFT_SKILLS_ENUM} />
 		</Container>
 	);
 };
