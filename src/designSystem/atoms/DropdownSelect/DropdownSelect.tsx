@@ -28,6 +28,16 @@ export const DropdownSelect = ({
 
 	const toggleOpen = () => setOpen(!isOpen);
 	const selectItem = (item: string) => setSelectedItem(item);
+	// const selectItem = (item: string) => {
+	// 	if (!selectedItem) {
+	// 		// If no category is selected, update the selected category
+	// 		handleCategorySelect(item);
+	// 	} else {
+	// 		// If a category is already selected, update the selected subcategory
+	// 		handleSubcategorySelect(item);
+	// 	}
+	// 	setSelectedItem(item);
+	// };
 
 	return (
 		<Container>
