@@ -1,0 +1,1 @@
+export { ReadyPage } from './ReadyPage';
