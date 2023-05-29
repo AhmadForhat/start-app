@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerCollapseButton = styled.button<IContainerCollapseButton>`
-	width: 350px;
+	width: 100%;
 	height: 50px;
 	background-color: ${({ isOpen }) => (isOpen ? '#C5002B' : 'white')};
 	border: ${({ isOpen }) => (!isOpen ? '1px solid black' : 'none')};

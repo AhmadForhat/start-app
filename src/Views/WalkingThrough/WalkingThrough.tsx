@@ -49,7 +49,7 @@ export const WalkingThrough = () => {
 
 	return (
 		<Container data-testid="walking-through">
-			<ContainerIcon>
+			<ContainerIcon onClick={goToSelectFields}>
 				<CloseIcon className="close-icon" />
 			</ContainerIcon>
 			<ContainerPageInfo>
