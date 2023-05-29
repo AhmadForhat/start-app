@@ -4,7 +4,7 @@ import { BackIcon } from 'designSystem/icons';
 
 interface INavBar {
 	onBack?: () => void;
-	title: string;
+	title?: string;
 }
 
 export const Navbar = ({ onBack, title }: INavBar) => {

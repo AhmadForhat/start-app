@@ -42,34 +42,29 @@ export const ContainerTitleAction = styled.button<IContainerCollapseButton>`
 	background-color: rgba(0, 0, 0, 0);
 	border: none;
 	margin: auto;
-	margin-left: 20px;
-	margin-top: 4%;
+	margin-left: 15px;
+	margin-top: 15px;
 	transition: all 0.5s;
 	p {
 		color: ${({ isOpen }) => isOpen && 'white'};
 		font-size: 20px;
+		position: absolute;
 	}
 `;
 
 export const List = styled.button<IContainerCollapseButton>`
 	height: auto;
-	width: 350px;
+	width: 300px;
 	border: none;
 	background-color: white;
 	margin: -15px auto 0px auto;
 	display: flex;
 	flex-direction: column;
 	transition: all 0.5s;
-	ul {
-		/* something might be here */
-	}
-	.children {
-		/* something might be here */
-	}
 `;
 
 export const Item = styled.button<SublistSelected>`
-	width: 296px;
+	width: 246px;
 	color: ${({ selected }) => (selected ? 'black' : 'grey')};
 	height: 50px;
 	font-size: 18px;

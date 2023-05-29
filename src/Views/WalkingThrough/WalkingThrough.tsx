@@ -8,6 +8,7 @@ import {
 	Title,
 	ContainerSteps,
 	Square,
+	ContainerButton,
 } from './WalkingThrough.styles';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'designSystem';
@@ -64,11 +65,13 @@ export const WalkingThrough = () => {
 				<Title>{stepProps?.title}</Title>
 				<Description>{stepProps?.description}</Description>
 			</ContainerDescription>
-			<Button
-				text={stepProps?.buttonText || ''}
-				onClick={stepProps?.onNext}
-				fullSize
-			/>
+			<ContainerButton>
+				<Button
+					text={stepProps?.buttonText || ''}
+					onClick={stepProps?.onNext}
+					fullSize
+				/>
+			</ContainerButton>
 		</Container>
 	);
 };
