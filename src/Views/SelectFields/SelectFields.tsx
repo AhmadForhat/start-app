@@ -8,7 +8,7 @@ import {
 import { DropdownSelect } from 'designSystem/atoms/DropdownSelect';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import { Logo } from 'designSystem/atoms/Logo';
-import { Button } from 'designSystem';
+import { Button, Wrapper } from 'designSystem';
 import { useRecoilState } from 'recoil';
 import { fieldsAtom } from 'context/RecoilAtoms';
 
@@ -59,30 +59,32 @@ export const SelectFields = () => {
 		setFields({ ...fields, subject: value });
 
 	return (
-		<Container>
-			<Navbar title="FIELD" />
-			<ContainerLogo>
-				<Logo />
-			</ContainerLogo>
-			<h2>SELECT CATEGORY</h2>
-			{fieldsCategoryAndSubjects.map((fieldCategoryAndSubjects) => (
-				<DropdownSelect
-					key={fieldCategoryAndSubjects.title}
-					onChangeCategory={handleChangeCategory}
-					onChangeSubject={handleChangeSubject}
-					selectedCategory={fields.category}
-					selectedSubject={fields.subject}
-					{...fieldCategoryAndSubjects}
-				/>
-			))}
-			<ContainerButton>
-				<Button
-					text={'CONFIRM'}
-					onClick={goToSelectLevel}
-					fullSize
-					disabled={!fields.category || !fields.subject}
-				/>
-			</ContainerButton>
-		</Container>
+		<Wrapper>
+			<Container>
+				<Navbar title="FIELD" />
+				<ContainerLogo>
+					<Logo />
+				</ContainerLogo>
+				<h2>SELECT CATEGORY</h2>
+				{fieldsCategoryAndSubjects.map((fieldCategoryAndSubjects) => (
+					<DropdownSelect
+						key={fieldCategoryAndSubjects.title}
+						onChangeCategory={handleChangeCategory}
+						onChangeSubject={handleChangeSubject}
+						selectedCategory={fields.category}
+						selectedSubject={fields.subject}
+						{...fieldCategoryAndSubjects}
+					/>
+				))}
+				<ContainerButton>
+					<Button
+						text={'CONFIRM'}
+						onClick={goToSelectLevel}
+						fullSize
+						disabled={!fields.category || !fields.subject}
+					/>
+				</ContainerButton>
+			</Container>
+		</Wrapper>
 	);
 };

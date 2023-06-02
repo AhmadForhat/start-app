@@ -5,9 +5,10 @@ import { BackIcon } from 'designSystem/icons';
 interface INavBar {
 	onBack?: () => void;
 	title?: string;
+	lineColor?: string;
 }
 
-export const Navbar = ({ onBack, title }: INavBar) => {
+export const Navbar = ({ onBack, title, lineColor }: INavBar) => {
 	return (
 		<>
 			<ContainerTitle>
@@ -20,7 +21,7 @@ export const Navbar = ({ onBack, title }: INavBar) => {
 					{title}
 				</Title>
 			</ContainerTitle>
-			<SpacerTitle />
+			<SpacerTitle lineColor={lineColor} />
 		</>
 	);
 };

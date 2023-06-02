@@ -9,7 +9,7 @@ import {
 } from './SelectLevel.styles';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import { Logo } from 'designSystem/atoms/Logo';
-import { Button } from 'designSystem';
+import { Button, Wrapper } from 'designSystem';
 import { CheckIcon } from 'designSystem/icons';
 import { fieldsAtom } from 'context/RecoilAtoms';
 import { useRecoilState } from 'recoil';
@@ -38,32 +38,34 @@ export const SelectLevel = () => {
 	const selectedItem = fields.level;
 
 	return (
-		<Container>
-			<Navbar onBack={goBack} title="LEVEL" />
-			<ContainerLogo>
-				<Logo />
-			</ContainerLogo>
-			<h2>SELECT LEVEL</h2>
-			<ContainerList>
-				{LEVEL_LIST.item.map((item) => (
-					<Item
-						key={item}
-						selected={item === selectedItem}
-						onClick={() => handleChange(item)}
-					>
-						{item}
-						{item === selectedItem && <CheckIcon className="check-icon" />}
-					</Item>
-				))}
-			</ContainerList>
-			<ContainerButton>
-				<Button
-					text={'CONFIRM'}
-					onClick={goToStart}
-					fullSize
-					disabled={!selectedItem}
-				/>
-			</ContainerButton>
-		</Container>
+		<Wrapper>
+			<Container>
+				<Navbar onBack={goBack} title="LEVEL" />
+				<ContainerLogo>
+					<Logo />
+				</ContainerLogo>
+				<h2>SELECT LEVEL</h2>
+				<ContainerList>
+					{LEVEL_LIST.item.map((item) => (
+						<Item
+							key={item}
+							selected={item === selectedItem}
+							onClick={() => handleChange(item)}
+						>
+							{item}
+							{item === selectedItem && <CheckIcon className="check-icon" />}
+						</Item>
+					))}
+				</ContainerList>
+				<ContainerButton>
+					<Button
+						text={'CONFIRM'}
+						onClick={goToStart}
+						fullSize
+						disabled={!selectedItem}
+					/>
+				</ContainerButton>
+			</Container>
+		</Wrapper>
 	);
 };

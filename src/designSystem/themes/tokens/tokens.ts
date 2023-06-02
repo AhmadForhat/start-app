@@ -35,6 +35,7 @@ export const tokens = {
 		default: '"poppins", sans-serif',
 	},
 	fontWeight: {
+		bold: 700,
 		semiBold: 600,
 		regular: 400,
 	},

@@ -22,11 +22,7 @@ const Router = (): JSX.Element => {
 
 	const routes = publicRoutes;
 
-	return (
-		<Wrapper>
-			<RouterProvider data-testid="router-provider" router={routes} />
-		</Wrapper>
-	);
+	return <RouterProvider data-testid="router-provider" router={routes} />;
 };
 
 export default Router;
