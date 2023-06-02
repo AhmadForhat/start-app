@@ -3,6 +3,7 @@ import { Questions } from 'Views/Questions';
 import { WalkingThrough } from 'Views/WalkingThrough';
 import { SelectFields } from 'Views/SelectFields';
 import { SelectLevel } from 'Views/SelectLevel';
+import { ReadyPage } from 'Views/ReadyPage';
 
 export const publicPages = [
 	{
@@ -22,6 +23,12 @@ export const publicPages = [
 		name: 'Select Level',
 		path: '/select-level',
 		element: SelectLevel,
+	},
+	{
+		id: 'ready-page',
+		name: 'Ready Page',
+		path: '/ready-page',
+		element: ReadyPage,
 	},
 	{
 		id: 'questions',

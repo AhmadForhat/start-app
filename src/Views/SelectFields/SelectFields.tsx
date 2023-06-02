@@ -1,8 +1,14 @@
 import React from 'react';
-import { Container, ContainerLogo } from './SelectFields.styles';
+import { useNavigate } from 'react-router-dom';
+import {
+	Container,
+	ContainerLogo,
+	ContainerButton,
+} from './SelectFields.styles';
 import { DropdownSelect } from 'designSystem/atoms/DropdownSelect';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import { Logo } from 'designSystem/atoms/Logo';
+import { Button } from 'designSystem';
 
 const BUSINESS_ENUM = {
 	title: 'BUSINESS',
@@ -40,6 +46,8 @@ const SOFT_SKILLS_ENUM = {
 };
 
 export const SelectFields = () => {
+	const navigate = useNavigate();
+	const goToSelectLevel = () => navigate('/select-level');
 	return (
 		<Container>
 			<Navbar title="FIELD" />
@@ -52,6 +60,9 @@ export const SelectFields = () => {
 			<DropdownSelect {...DIGITAL_MARKETING_ENUM} />
 			<DropdownSelect {...HOSPITALITY_ENUM} />
 			<DropdownSelect {...SOFT_SKILLS_ENUM} />
+			<ContainerButton>
+				<Button text={'CONFIRM'} onClick={goToSelectLevel} fullSize />
+			</ContainerButton>
 		</Container>
 	);
 };

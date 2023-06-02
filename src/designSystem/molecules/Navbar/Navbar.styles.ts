@@ -16,12 +16,13 @@ export const ContainerTitle = styled.div`
 	}
 `;
 
-export const Title = styled.h2`
+export const Title = styled.div`
 	display: flex;
 	justify-content: center;
 	height: 33.5px;
 	font-size: 18px;
 	font-family: 'Myriad Pro', Arial, sans-serif;
+	font-weight: normal;
 	color: black;
 	border: none;
 `;
