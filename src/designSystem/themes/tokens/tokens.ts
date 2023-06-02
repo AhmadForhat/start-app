@@ -6,8 +6,8 @@ export const tokens = {
 			lighter: '#9F9F9F',
 		},
 		gray: {
-			default: '#5C6483',
-			light: '#8A91AB',
+			default: '#707070',
+			light: '#B9B9B9',
 			lighter: '#5C6483',
 		},
 		error: {

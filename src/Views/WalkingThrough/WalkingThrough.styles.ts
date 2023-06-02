@@ -65,6 +65,4 @@ export const Description = styled.p`
 	margin-bottom: 86px;
 `;
 
-export const ContainerButton = styled.div`
-	margin: auto 30px;
-`;
+export const ContainerButton = styled.div``;

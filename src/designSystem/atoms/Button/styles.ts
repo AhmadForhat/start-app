@@ -5,6 +5,7 @@ import { ButtonTypes } from './Button';
 interface ContainerProps {
 	variant?: ButtonTypes;
 	fullSize?: boolean;
+	disabled?: boolean;
 }
 
 export const Container = styled.button<ContainerProps>`
@@ -17,14 +18,15 @@ export const Container = styled.button<ContainerProps>`
 	line-height: 22px;
 	border: 2px solid ${tokens.color.primary.lighter};
 	padding: 16px 24px;
-	background-color: ${tokens.color.primary.default};
+	background-color: ${({ disabled }) =>
+		disabled ? tokens.color.gray.light : tokens.color.primary.default};
 	background: ${({ variant }) => variant === 'label' && 'none'};
 	border: none;
 	color: ${({ variant }) =>
 		variant === 'label' ? tokens.color.primary.default : 'white'};
 	transition: all 0.5s;
 	width: ${({ fullSize }) => (fullSize ? '100%' : 'fit-content')};
-	cursor: pointer;
+	cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
 	:hover {
 		opacity: 90%;

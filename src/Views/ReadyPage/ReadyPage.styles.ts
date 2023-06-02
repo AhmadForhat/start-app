@@ -12,7 +12,8 @@ export const ContainerPageInfo = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	svg {
+
+	img {
 		width: 150px;
 		height: 150px;
 	}
@@ -36,9 +37,7 @@ export const Description2 = styled.p`
 	color: black;
 	text-align: center;
 	margin-bottom: 86px;
-	font-style: bold;
+	font-weight: bold;
 `;
 
-export const ContainerButton = styled.div`
-	margin: auto 30px;
-`;
+export const ContainerButton = styled.div``;

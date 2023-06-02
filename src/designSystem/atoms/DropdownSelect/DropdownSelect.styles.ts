@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface IContainerCollapseButton {
 	isOpen?: boolean;
+	actived?: boolean;
 }
 
 interface SublistSelected {
@@ -16,8 +17,8 @@ export const Container = styled.div`
 export const ContainerCollapseButton = styled.button<IContainerCollapseButton>`
 	width: 100%;
 	height: 50px;
-	background-color: ${({ isOpen }) => (isOpen ? '#C5002B' : 'white')};
-	border: ${({ isOpen }) => (!isOpen ? '1px solid black' : 'none')};
+	background-color: ${({ actived }) => (actived ? '#C5002B' : 'white')};
+	border: ${({ actived }) => (!actived ? '1px solid black' : 'none')};
 	margin: 15px auto;
 	display: flex;
 	transition: all 0.5s;
@@ -34,7 +35,7 @@ export const ContainerIcon = styled.button<IContainerCollapseButton>`
 	width: 55px;
 	background-color: rgba(0, 0, 0, 0);
 	border: none;
-	border-right: 1px solid ${({ isOpen }) => (!isOpen ? 'black' : 'white')};
+	border-right: 1px solid ${({ actived }) => (!actived ? 'black' : 'white')};
 	transition: all 0.5s;
 `;
 
@@ -45,40 +46,37 @@ export const ContainerTitleAction = styled.button<IContainerCollapseButton>`
 	margin-left: 15px;
 	margin-top: 15px;
 	transition: all 0.5s;
+
 	p {
-		color: ${({ isOpen }) => isOpen && 'white'};
+		color: ${({ actived }) => actived && 'white'};
 		font-size: 20px;
 		position: absolute;
 	}
 `;
 
-export const List = styled.button<IContainerCollapseButton>`
-	height: auto;
-	width: 300px;
+export const List = styled.div<IContainerCollapseButton>`
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	flex-direction: column;
+	width: 100%;
 	border: none;
 	background-color: white;
-	margin: -15px auto 0px auto;
-	display: flex;
-	flex-direction: column;
+	margin-top: -15px;
 	transition: all 0.5s;
 `;
 
 export const Item = styled.button<SublistSelected>`
-	width: 246px;
-	color: ${({ selected }) => (selected ? 'black' : 'grey')};
-	height: 50px;
-	font-size: 18px;
 	display: flex;
+	justify-content: space-between;
+	width: calc(100% - 55px);
+	color: ${({ selected }) => (selected ? 'black' : 'grey')};
+	font-size: 18px;
 	background-color: rgba(0, 0, 0, 0);
 	border: 1px solid ${({ selected }) => (selected ? 'black' : 'grey')};
-	margin: auto;
-	margin-left: 54px;
-	margin-top: 1px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0 20px;
+	padding: 12px 20px;
 	transition: all 0.5s;
+
 	.check-icon {
 		width: 20px;
 		opacity: ${({ selected }) => (selected ? '1' : '0')};

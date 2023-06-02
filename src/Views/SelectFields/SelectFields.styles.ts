@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	margin: 40px 25px auto 25px;
 	h2 {
 		color: #000000;
 		font-family: 'Myriad Pro', Arial, sans-serif;

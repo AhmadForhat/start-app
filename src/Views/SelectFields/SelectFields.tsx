@@ -9,10 +9,11 @@ import { DropdownSelect } from 'designSystem/atoms/DropdownSelect';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import { Logo } from 'designSystem/atoms/Logo';
 import { Button } from 'designSystem';
+import { useRecoilState } from 'recoil';
+import { fieldsAtom } from 'context/RecoilAtoms';
 
 const BUSINESS_ENUM = {
 	title: 'BUSINESS',
-	sublist: ['Example1', 'Example2'],
 };
 
 const TECHNOLOGY_ENUM = {
@@ -25,29 +26,38 @@ const TECHNOLOGY_ENUM = {
 		'Database Developer',
 	],
 };
+
 const DIGITAL_MARKETING_ENUM = {
 	title: 'DIGITAL MARKETING',
-	sublist: ['Example1'],
 };
+
 const HOSPITALITY_ENUM = {
 	title: 'HOSPITALITY',
-	sublist: [
-		'Example1',
-		'Example2',
-		'Example3',
-		'Example4',
-		'Example5',
-		'Example6',
-	],
 };
+
 const SOFT_SKILLS_ENUM = {
 	title: 'SOFT SKILLS',
-	sublist: ['Example1', 'Example2', 'Example3'],
 };
+
+const fieldsCategoryAndSubjects = [
+	BUSINESS_ENUM,
+	TECHNOLOGY_ENUM,
+	DIGITAL_MARKETING_ENUM,
+	HOSPITALITY_ENUM,
+	SOFT_SKILLS_ENUM,
+];
 
 export const SelectFields = () => {
 	const navigate = useNavigate();
 	const goToSelectLevel = () => navigate('/select-level');
+	const [fields, setFields] = useRecoilState(fieldsAtom);
+
+	const handleChangeCategory = (value: string) =>
+		setFields({ ...fields, category: value, subject: '' });
+
+	const handleChangeSubject = (value: string) =>
+		setFields({ ...fields, subject: value });
+
 	return (
 		<Container>
 			<Navbar title="FIELD" />
@@ -55,13 +65,23 @@ export const SelectFields = () => {
 				<Logo />
 			</ContainerLogo>
 			<h2>SELECT CATEGORY</h2>
-			<DropdownSelect {...BUSINESS_ENUM} />
-			<DropdownSelect {...TECHNOLOGY_ENUM} />
-			<DropdownSelect {...DIGITAL_MARKETING_ENUM} />
-			<DropdownSelect {...HOSPITALITY_ENUM} />
-			<DropdownSelect {...SOFT_SKILLS_ENUM} />
+			{fieldsCategoryAndSubjects.map((fieldCategoryAndSubjects) => (
+				<DropdownSelect
+					key={fieldCategoryAndSubjects.title}
+					onChangeCategory={handleChangeCategory}
+					onChangeSubject={handleChangeSubject}
+					selectedCategory={fields.category}
+					selectedSubject={fields.subject}
+					{...fieldCategoryAndSubjects}
+				/>
+			))}
 			<ContainerButton>
-				<Button text={'CONFIRM'} onClick={goToSelectLevel} fullSize />
+				<Button
+					text={'CONFIRM'}
+					onClick={goToSelectLevel}
+					fullSize
+					disabled={!fields.category || !fields.subject}
+				/>
 			</ContainerButton>
 		</Container>
 	);

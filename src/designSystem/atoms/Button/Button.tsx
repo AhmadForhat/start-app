@@ -9,6 +9,7 @@ export interface ButtonProps {
 	variant?: ButtonTypes;
 	isLoading?: boolean;
 	fullSize?: boolean;
+	disabled?: boolean;
 }
 
 export const Button = ({
@@ -17,9 +18,15 @@ export const Button = ({
 	isLoading,
 	variant = 'primary',
 	fullSize = false,
+	disabled,
 }: ButtonProps): JSX.Element => {
 	return (
-		<Container variant={variant} onClick={onClick} fullSize={fullSize}>
+		<Container
+			variant={variant}
+			onClick={onClick}
+			fullSize={fullSize}
+			disabled={disabled}
+		>
 			{isLoading ? <Loading size={24} /> : text}
 		</Container>
 	);
