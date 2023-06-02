@@ -9,7 +9,7 @@ import {
 	ContainerButton,
 } from './ReadyPage.styles';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'designSystem';
+import { Button, Wrapper } from 'designSystem';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import timeTrackingImage from 'designSystem/assets/time-tracking.png';
 import { fieldsAtom } from 'context/RecoilAtoms';
@@ -37,21 +37,23 @@ export const ReadyPage = () => {
 	}, [fields]);
 
 	return (
-		<Container data-testid="walking-through">
-			<Navbar onBack={goBack} />
-			<ContainerPageInfo>
-				<img src={timeTrackingImage} alt="Time Tracking" />
-			</ContainerPageInfo>
-			<ContainerDescription>
-				<Title>{'ARE YOU READY?'}</Title>
-				<Description1>
-					{'Make sure you have your phone notifications off for your test.'}
-				</Description1>
-				<Description2>{'Good Luck!'}</Description2>
-			</ContainerDescription>
-			<ContainerButton>
-				<Button text={'READY'} onClick={goToQuestions} fullSize />
-			</ContainerButton>
-		</Container>
+		<Wrapper>
+			<Container data-testid="walking-through">
+				<Navbar onBack={goBack} />
+				<ContainerPageInfo>
+					<img src={timeTrackingImage} alt="Time Tracking" />
+				</ContainerPageInfo>
+				<ContainerDescription>
+					<Title>{'ARE YOU READY?'}</Title>
+					<Description1>
+						{'Make sure you have your phone notifications off for your test.'}
+					</Description1>
+					<Description2>{'Good Luck!'}</Description2>
+				</ContainerDescription>
+				<ContainerButton>
+					<Button text={'READY'} onClick={goToQuestions} fullSize />
+				</ContainerButton>
+			</Container>
+		</Wrapper>
 	);
 };

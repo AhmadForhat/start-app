@@ -4,6 +4,7 @@ export const ContainerTitle = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
+	padding-bottom: 28px;
 
 	button {
 		background: none;
@@ -32,10 +33,15 @@ export const Title = styled.h2<TitleProps>`
 	margin-right: ${({ hasBackButton }) => hasBackButton && '24px'};
 `;
 
-export const SpacerTitle = styled.div`
-	border-top: 0.01px solid #ddd;
-	margin-bottom: 15px;
-	margin-top: 8px;
-	margin-right: -3.5%;
-	margin-left: -3.5%;
+interface SpacerTitleColorProps {
+	lineColor?: string;
+}
+
+export const SpacerTitle = styled.div<SpacerTitleColorProps>`
+	position: absolute;
+	right: 0;
+	top: 82px;
+	width: 100%;
+	height: 1px;
+	background-color: ${({ lineColor }) => lineColor || '#ddd'};
 `;

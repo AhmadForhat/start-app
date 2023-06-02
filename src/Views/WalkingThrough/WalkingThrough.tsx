@@ -11,7 +11,7 @@ import {
 	ContainerButton,
 } from './WalkingThrough.styles';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'designSystem';
+import { Button, Wrapper } from 'designSystem';
 import { CloseIcon, Html } from 'designSystem/icons';
 
 export const WalkingThrough = () => {
@@ -49,29 +49,31 @@ export const WalkingThrough = () => {
 	}[currentStep];
 
 	return (
-		<Container data-testid="walking-through">
-			<ContainerIcon onClick={goToSelectFields}>
-				<CloseIcon className="close-icon" />
-			</ContainerIcon>
-			<ContainerPageInfo>
-				<Html />
-				<ContainerSteps>
-					<Square actived={stepProps?.id === 1} />
-					<Square actived={stepProps?.id === 2} />
-					<Square actived={stepProps?.id === 3} />
-				</ContainerSteps>
-			</ContainerPageInfo>
-			<ContainerDescription>
-				<Title>{stepProps?.title}</Title>
-				<Description>{stepProps?.description}</Description>
-			</ContainerDescription>
-			<ContainerButton>
-				<Button
-					text={stepProps?.buttonText || ''}
-					onClick={stepProps?.onNext}
-					fullSize
-				/>
-			</ContainerButton>
-		</Container>
+		<Wrapper>
+			<Container data-testid="walking-through">
+				<ContainerIcon onClick={goToSelectFields}>
+					<CloseIcon className="close-icon" />
+				</ContainerIcon>
+				<ContainerPageInfo>
+					<Html />
+					<ContainerSteps>
+						<Square actived={stepProps?.id === 1} />
+						<Square actived={stepProps?.id === 2} />
+						<Square actived={stepProps?.id === 3} />
+					</ContainerSteps>
+				</ContainerPageInfo>
+				<ContainerDescription>
+					<Title>{stepProps?.title}</Title>
+					<Description>{stepProps?.description}</Description>
+				</ContainerDescription>
+				<ContainerButton>
+					<Button
+						text={stepProps?.buttonText || ''}
+						onClick={stepProps?.onNext}
+						fullSize
+					/>
+				</ContainerButton>
+			</Container>
+		</Wrapper>
 	);
 };
