@@ -16,57 +16,50 @@ import { ComputerWhite } from 'designSystem/icons';
 interface IDropdownSelect {
 	title: string;
 	sublist?: string[];
+	onChangeCategory: (category: string) => void;
+	onChangeSubject: (subject: string) => void;
+	selectedCategory: string;
+	selectedSubject: string;
 }
 
 export const DropdownSelect = ({
 	title,
 	sublist,
+	onChangeCategory,
+	onChangeSubject,
+	selectedCategory,
+	selectedSubject,
 }: IDropdownSelect): JSX.Element => {
 	const [isOpen, setOpen] = useState(false);
-	const [selectedItem, setSelectedItem] = useState<string | null>(null);
-	const isOpenAndHaveSublist = isOpen && !!sublist?.length;
+	const toggleOpen = () => {
+		setOpen(!isOpen);
+		!!sublist?.length && onChangeCategory(title);
+	};
 
-	const toggleOpen = () => setOpen(!isOpen);
-	const selectItem = (item: string) => setSelectedItem(item);
-	// const selectItem = (item: string) => {
-	// 	if (!selectedItem) {
-	// 		// If no category is selected, update the selected category
-	// 		handleCategorySelect(item);
-	// 	} else {
-	// 		// If a category is already selected, update the selected subcategory
-	// 		handleSubcategorySelect(item);
-	// 	}
-	// 	setSelectedItem(item);
-	// };
+	const isActived = selectedCategory === title;
 
 	return (
 		<Container>
-			<ContainerCollapseButton
-				onClick={toggleOpen}
-				isOpen={isOpenAndHaveSublist}
-			>
-				<ContainerIcon onClick={toggleOpen} isOpen={isOpenAndHaveSublist}>
-					{isOpenAndHaveSublist ? <ComputerWhite /> : <Computer />}
+			<ContainerCollapseButton onClick={toggleOpen} actived={isActived}>
+				<ContainerIcon onClick={toggleOpen} actived={isActived}>
+					{isActived ? <ComputerWhite /> : <Computer />}
 				</ContainerIcon>
-				<ContainerTitleAction
-					onClick={toggleOpen}
-					isOpen={isOpenAndHaveSublist}
-				>
+				<ContainerTitleAction onClick={toggleOpen} actived={isActived}>
 					<p>{title}</p>
 				</ContainerTitleAction>
-				{isOpenAndHaveSublist ? (
+				{isActived && isOpen ? (
 					<UpIcon className="up-down-icon" />
 				) : (
 					<DownIcon className="up-down-icon" />
 				)}
 			</ContainerCollapseButton>
-			{isOpenAndHaveSublist && (
+			{isActived && isOpen && (
 				<List>
-					{sublist.map((item: string) => (
+					{sublist?.map((item: string) => (
 						<Item
 							key={item}
-							selected={item === selectedItem}
-							onClick={() => selectItem(item)}
+							selected={selectedSubject === item}
+							onClick={() => onChangeSubject(item)}
 						>
 							{item}
 							<CheckIcon className="check-icon" />

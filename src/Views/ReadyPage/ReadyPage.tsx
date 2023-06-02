@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
 	Container,
 	ContainerDescription,
@@ -12,16 +12,33 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from 'designSystem';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import timeTrackingImage from 'designSystem/assets/time-tracking.png';
-import { SelectLevel } from 'Views/SelectLevel';
+import { fieldsAtom } from 'context/RecoilAtoms';
+import { useRecoilState } from 'recoil';
 
 export const ReadyPage = () => {
 	const navigate = useNavigate();
 
+	const goBack = () => navigate('/select-level');
 	const goToQuestions = () => navigate('/questions');
+	const goBackToTheStart = () => navigate('/select-fields');
+
+	const [fields] = useRecoilState(fieldsAtom);
+
+	useEffect(() => {
+		if (!fields.category || !fields.subject) {
+			goBackToTheStart();
+		}
+
+		if (!fields.subject) {
+			goBack();
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [fields]);
 
 	return (
 		<Container data-testid="walking-through">
-			<Navbar onBack={SelectLevel} />
+			<Navbar onBack={goBack} />
 			<ContainerPageInfo>
 				<img src={timeTrackingImage} alt="Time Tracking" />
 			</ContainerPageInfo>

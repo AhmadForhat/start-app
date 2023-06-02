@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const ContainerTitle = styled.div`
+	position: relative;
 	display: flex;
-	justify-content: center;
-	height: 33.5px;
+	align-items: center;
 
 	button {
 		background: none;
@@ -16,15 +16,20 @@ export const ContainerTitle = styled.div`
 	}
 `;
 
-export const Title = styled.div`
+interface TitleProps {
+	hasBackButton?: boolean;
+}
+
+export const Title = styled.h2<TitleProps>`
 	display: flex;
 	justify-content: center;
 	height: 33.5px;
-	font-size: 18px;
+	font-size: 18px !important;
 	font-family: 'Myriad Pro', Arial, sans-serif;
 	font-weight: normal;
 	color: black;
 	border: none;
+	margin-right: ${({ hasBackButton }) => hasBackButton && '24px'};
 `;
 
 export const SpacerTitle = styled.div`

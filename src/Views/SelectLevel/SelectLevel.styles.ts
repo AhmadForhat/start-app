@@ -5,7 +5,6 @@ interface SublistSelected {
 }
 
 export const Container = styled.div`
-	margin: 40px 25px auto 25px;
 	h2 {
 		color: #000000;
 		font-family: 'Myriad Pro', Arial, sans-serif;
@@ -28,8 +27,15 @@ export const ContainerButton = styled.div`
 	margin: 60px 0px 110px 0px;
 `;
 
+export const ContainerList = styled.div`
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+`;
+
 export const Item = styled.button<SublistSelected>`
-	width: 300px;
+	width: 100%;
 	color: ${({ selected }) => (selected ? 'black' : 'grey')};
 	height: 50px;
 	font-size: 18px;
@@ -37,7 +43,6 @@ export const Item = styled.button<SublistSelected>`
 	background-color: rgba(0, 0, 0, 0);
 	border: 1px solid ${({ selected }) => (selected ? 'black' : 'grey')};
 	margin: auto;
-	margin-top: 30px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
