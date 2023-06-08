@@ -10,16 +10,21 @@ import {
 	QuestionProgressStatus3,
 	ProgressBar,
 	ContainerTimerAndProgressBar,
+	Code,
+	MovetoQuestion,
 } from './Questions.styles';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { CloseIcon } from 'designSystem/icons';
+import { BackIcon } from 'designSystem/icons';
+import { NextIcon } from 'designSystem/icons';
 import { Options } from './components/Options';
 
 const QUESTIONS_LIST = [
 	{
 		id: '123',
 		question: 'What are the features of Java programming languages?',
+		code: 'for i in 3:\n\tprint(i)',
 		options: [
 			{
 				id: '1',
@@ -86,12 +91,23 @@ export const Questions = () => {
 			<ContainerQuestion>
 				<CloseIcon className="close-icon" />
 				<Question>
-					<p className="number">{currentPage}</p>
+					<p className="number">
+						{currentPage < 10 ? '0' + currentPage : currentPage}.
+					</p>
 					<p className="text">{currentQuestion.question}</p>
 				</Question>
+				<Code>
+					<pre className="code">{currentQuestion.code}</pre>
+				</Code>
 				<Options data={currentQuestion.options} onSelect={() => null} />
 			</ContainerQuestion>
-			<ContainerFooter>Skip</ContainerFooter>
+			<ContainerFooter>
+				<p className="skip">Skip</p>
+				<MovetoQuestion>
+					<BackIcon className="back-icon" color="white" />
+					<NextIcon className="next-icon" color="white" />
+				</MovetoQuestion>
+			</ContainerFooter>
 		</Container>
 	);
 };

@@ -63,6 +63,7 @@ export const ContainerQuestion = styled.div`
 		width: 16px;
 		height: 16px;
 		margin-left: auto;
+		margin-bottom: 29px;
 	}
 `;
 
@@ -72,7 +73,6 @@ export const Question = styled.div`
 	font-family: ${tokens.fontFamily.default};
 	font-weight: ${tokens.fontWeight.bold};
 	font-size: ${tokens.fontSize.medium};
-	margin-bottom: 40px;
 
 	.number {
 		color: ${tokens.color.primary.default};
@@ -83,8 +83,38 @@ export const Question = styled.div`
 	}
 `;
 
+export const Code = styled.div`
+	font-size: ${tokens.fontSize.small};
+	padding: 10px 25px;
+`;
+
 export const ContainerFooter = styled.div`
-	height: 100%;
+	height: 40px;
 	display: flex;
+	margin-bottom: 32px;
+	display: flex;
+	align-items: center;
 	justify-content: space-between;
+	.skip {
+		font-size: ${tokens.fontSize.medium};
+		color: white;
+		padding: 8px;
+	}
+`;
+
+export const MovetoQuestion = styled.div`
+	display: flex;
+	gap: 2px;
+	.back-icon {
+		width: 40px;
+		height: 40px;
+		padding: 8px;
+		background-color: rgba(255, 255, 255, 58%);
+	}
+	.next-icon {
+		width: 40px;
+		height: 40px;
+		padding: 8px;
+		background-color: rgba(255, 255, 255, 58%);
+	}
 `;
