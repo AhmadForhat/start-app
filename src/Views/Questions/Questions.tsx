@@ -63,7 +63,7 @@ export const Questions = () => {
 			clearInterval(timerId);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [min, sec]);
 
 	const currentQuestion = QUESTIONS_LIST[currentPage - 1];
 
