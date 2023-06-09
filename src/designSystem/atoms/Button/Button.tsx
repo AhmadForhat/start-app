@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from './styles';
 import { Loading } from '../Loading';
 
-export type ButtonTypes = 'primary' | 'label';
+export type ButtonTypes = 'primary' | 'label' | 'secondary';
 export interface ButtonProps {
 	text: string;
 	onClick?: () => void;

@@ -7,7 +7,8 @@ export const Container = styled.div`
 	padding: 30px 38px;
 	background-color: ${tokens.color.primary.default};
 	width: 100%;
-	height: 100vh;
+	height: 100%;
+	min-height: 100vh;
 `;
 
 export const ContainerTimerAndProgressBar = styled.div`
@@ -95,6 +96,7 @@ export const ContainerFooter = styled.div`
 	height: 40px;
 	display: flex;
 	margin-bottom: 32px;
+	margin-top: auto;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

@@ -48,27 +48,25 @@ const QUESTIONS_LIST = Array.from({ length: 30 }, (_, i) => ({
 export const Questions = () => {
 	const [{ min, sec }, setCount] = useState({ min: 40, sec: 0 });
 	const [currentPage, setCurrentPage] = useState(1);
-	// const [isclicked, setIsClicked] = useState(false);
+	const [isConfirmExitModalOpen, setConfirmExitModalOpen] = useState(false);
 	const totalPages = 30;
 	const progress = 60;
 	const navigate = useNavigate();
+
+	console.log(currentPage);
 
 	const currentQuestion = QUESTIONS_LIST[currentPage - 1];
 
 	const goToResult = () => navigate('/results');
 	const goBack = () => navigate('/select-fields');
-	const NextQuestion = () => {
+	const handleNextQuestion = () => {
 		if (currentPage < totalPages) {
 			setCurrentPage(currentPage + 1);
-		} else {
-			setCurrentPage(currentPage);
 		}
 	};
-	const PreviousQuestion = () => {
-		if (currentPage > 0) {
+	const handlePreviousQuestion = () => {
+		if (currentPage > 1) {
 			setCurrentPage(currentPage - 1);
-		} else {
-			setCurrentPage(currentPage);
 		}
 	};
 
@@ -90,63 +88,73 @@ export const Questions = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [min, sec]);
 
+	const handleSkip = () => {
+		setConfirmExitModalOpen(true);
+	};
+
 	return (
-		<Container>
-			<Navbar lineColor="#707070" title="TEST" onBack={goBack} />
-			<ContainerTimerAndProgressBar>
-				<ContainerQuestionProgressStatus>
-					<QuestionProgressStatus1>
-						Question {currentPage} of {totalPages}
-					</QuestionProgressStatus1>
-					<QuestionProgressStatus2>
-						{min}:{sec < 10 ? '0' + sec : sec}
-					</QuestionProgressStatus2>
-				</ContainerQuestionProgressStatus>
-				<ProgressBar>
-					<QuestionProgressStatus3 style={{ width: `${progress}%` }} />
-				</ProgressBar>
-			</ContainerTimerAndProgressBar>
-			<ContainerQuestion>
-				<ContainerIcon onClick={goToSelectFields}>
-					<CloseIcon className="close-icon" />
-				</ContainerIcon>
-				{clickedOn && <CloseIcon className="close-icon" />}
-				<Question>
-					<p className="number">
-						{currentPage < 10 ? '0' + currentPage : currentPage}.
-					</p>
-					<p className="text">{currentQuestion.question}</p>
-				</Question>
-				<Code>
-					<pre className="code">{currentQuestion.code}</pre>
-				</Code>
-				<Options data={currentQuestion.options} onSelect={() => null} />
-			</ContainerQuestion>
-			<ContainerFooter>
-				{currentPage != totalPages ? (
-					<p className="skip" onClick={NextQuestion}>
-						<u>Skip</u>
-					</p>
-				) : (
-					<p>
-						<u></u>
-					</p>
-				)}
-				<MovetoQuestion>
-					<div onClick={PreviousQuestion}>
-						<BackIcon className="back-icon" color="white" />
+		<>
+			<QuitConfirmation
+				isVisible={isConfirmExitModalOpen}
+				onClose={() => setConfirmExitModalOpen(false)}
+				onSubmit={goToResult}
+			/>
+			<Container>
+				<Navbar lineColor="#707070" title="TEST" />
+				<ContainerTimerAndProgressBar>
+					<ContainerQuestionProgressStatus>
+						<QuestionProgressStatus1>
+							Question {currentPage} of {totalPages}
+						</QuestionProgressStatus1>
+						<QuestionProgressStatus2>
+							{min}:{sec < 10 ? '0' + sec : sec}
+						</QuestionProgressStatus2>
+					</ContainerQuestionProgressStatus>
+					<ProgressBar>
+						<QuestionProgressStatus3 style={{ width: `${progress}%` }} />
+					</ProgressBar>
+				</ContainerTimerAndProgressBar>
+				<ContainerQuestion>
+					<div onClick={handleSkip} className="close-icon">
+						<CloseIcon className="close-icon" />
 					</div>
+					<Question>
+						<p className="number">
+							{currentPage < 10 ? '0' + currentPage : currentPage}.
+						</p>
+						<p className="text">{currentQuestion.question}</p>
+					</Question>
+					<Code>
+						<pre className="code">{currentQuestion.code}</pre>
+					</Code>
+					<Options data={currentQuestion.options} onSelect={() => null} />
+				</ContainerQuestion>
+				<ContainerFooter>
 					{currentPage != totalPages ? (
-						<div onClick={NextQuestion}>
-							<NextIcon className="next-icon" color="white" />
-						</div>
+						<p className="skip" onClick={handleSkip}>
+							<u>Skip</u>
+						</p>
 					) : (
-						<p className="submit" onClick={goToResult}>
-							SUBMIT
+						<p>
+							<u></u>
 						</p>
 					)}
-				</MovetoQuestion>
-			</ContainerFooter>
-		</Container>
+					<MovetoQuestion>
+						<div onClick={handlePreviousQuestion}>
+							<BackIcon className="back-icon" color="white" />
+						</div>
+						{currentPage != totalPages ? (
+							<div onClick={handleNextQuestion}>
+								<NextIcon className="next-icon" color="white" />
+							</div>
+						) : (
+							<p className="submit" onClick={goToResult}>
+								SUBMIT
+							</p>
+						)}
+					</MovetoQuestion>
+				</ContainerFooter>
+			</Container>
+		</>
 	);
 };
