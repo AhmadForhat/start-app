@@ -71,21 +71,24 @@ export const Question = styled.div`
 	display: flex;
 	gap: 8px;
 	font-family: ${tokens.fontFamily.default};
-	font-weight: ${tokens.fontWeight.bold};
 	font-size: ${tokens.fontSize.medium};
 
 	.number {
 		color: ${tokens.color.primary.default};
+		font-weight: ${tokens.fontWeight.bold};
+		line-height: 26px;
 	}
 
 	.text {
+		font-weight: ${tokens.fontWeight.bold};
 		color: black;
+		line-height: 26px;
 	}
 `;
 
 export const Code = styled.div`
 	font-size: ${tokens.fontSize.small};
-	padding: 10px 25px;
+	padding: 10px 30px;
 `;
 
 export const ContainerFooter = styled.div`
@@ -109,12 +112,23 @@ export const MovetoQuestion = styled.div`
 		width: 40px;
 		height: 40px;
 		padding: 8px;
-		background-color: rgba(255, 255, 255, 58%);
+		background-color: rgba(255, 255, 255, 42%);
 	}
 	.next-icon {
 		width: 40px;
 		height: 40px;
 		padding: 8px;
-		background-color: rgba(255, 255, 255, 58%);
+		background-color: rgba(255, 255, 255, 42%);
+	}
+	.submit {
+		width: 155px;
+		height: 44px;
+		padding: 8px;
+		margin-left: 15px;
+		color: white;
+		border: 2px solid white;
+		margin-top: -2px;
+		justify-content: center;
+		text-align: center;
 	}
 `;

@@ -10,8 +10,8 @@ import {
 	Square,
 	ContainerButton,
 } from './WalkingThrough.styles';
-import { useNavigate } from 'react-router-dom';
 import { Button, Wrapper } from 'designSystem';
+import { useNavigate } from 'react-router-dom';
 import { CloseIcon, Html } from 'designSystem/icons';
 
 export const WalkingThrough = () => {
