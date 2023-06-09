@@ -14,7 +14,7 @@ export const Navbar = ({ onBack, title, lineColor }: INavBar) => {
 			<ContainerTitle>
 				{onBack && (
 					<button onClick={onBack}>
-						<BackIcon className="back-icon" />
+						<BackIcon className="back-icon" color="black" />
 					</button>
 				)}
 				<Title hasBackButton={!!onBack} className="page-title">
