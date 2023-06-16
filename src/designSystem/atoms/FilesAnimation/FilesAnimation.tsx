@@ -12,5 +12,5 @@ const defaultOptions = {
 };
 
 export const FilesAnimation = () => {
-	return <Lottie options={defaultOptions} height={400} width={400} />;
+	return <Lottie options={defaultOptions} height={62} width={100} />;
 };

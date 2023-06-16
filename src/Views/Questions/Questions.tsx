@@ -20,26 +20,24 @@ import { BackIcon } from 'designSystem/icons';
 import { NextIcon } from 'designSystem/icons';
 import { Options } from './components/Options';
 import { QuitConfirmation } from './components/QuitComfirmation';
+import { useRecoilState } from 'recoil';
+import { selectionsAtom } from 'context/RecoilAtoms';
 
-// interface QuitConformation {
-// 	clickedOn?: () => void;
-// }
-
-const QUESTIONS_LIST = Array.from({ length: 30 }, (_, i) => ({
-	id: (i + 1).toString(),
+const QUESTIONS_LIST: any = Array.from({ length: 30 }, (_, i) => ({
+	questionId: (i + 1).toString(),
 	question: `What are the features of programming language ${i + 1}?`,
 	code: `for i in ${i + 1}:\n\tprint(i)`,
 	options: [
 		{
-			id: '1',
+			optionId: (i + 1).toString() + '-1',
 			content: `A lot of features for language ${i + 1}`,
 		},
 		{
-			id: '2',
+			optionId: (i + 1).toString() + '-2',
 			content: `Many features for language ${i + 1}`,
 		},
 		{
-			id: '3',
+			optionId: (i + 1).toString() + '-3',
 			content: `Another features for language ${i + 1}`,
 		},
 	],
@@ -49,16 +47,14 @@ export const Questions = () => {
 	const [{ min, sec }, setCount] = useState({ min: 40, sec: 0 });
 	const [currentPage, setCurrentPage] = useState(1);
 	const [isConfirmExitModalOpen, setConfirmExitModalOpen] = useState(false);
+	const [selections, setSelections] = useRecoilState<any>(selectionsAtom);
 	const totalPages = 30;
-	const progress = 60;
+	const progress = ((Object.keys(selections).length + 1) / totalPages) * 100;
 	const navigate = useNavigate();
-
-	console.log(currentPage);
 
 	const currentQuestion = QUESTIONS_LIST[currentPage - 1];
 
 	const goToResult = () => navigate('/results');
-	const goBack = () => navigate('/select-fields');
 	const handleNextQuestion = () => {
 		if (currentPage < totalPages) {
 			setCurrentPage(currentPage + 1);
@@ -127,7 +123,17 @@ export const Questions = () => {
 					<Code>
 						<pre className="code">{currentQuestion.code}</pre>
 					</Code>
-					<Options data={currentQuestion.options} onSelect={() => null} />
+					<Options
+						data={currentQuestion.options}
+						questionId={QUESTIONS_LIST[currentPage - 1].questionId}
+						actived={selections[QUESTIONS_LIST[currentPage - 1].questionId]}
+						onSelect={(e) => {
+							setSelections({
+								...selections,
+								[QUESTIONS_LIST[currentPage - 1].questionId]: e,
+							});
+						}}
+					/>
 				</ContainerQuestion>
 				<ContainerFooter>
 					{currentPage != totalPages ? (

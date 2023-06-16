@@ -8,3 +8,8 @@ export const fieldsAtom = atom({
 		level: '',
 	},
 });
+
+export const selectionsAtom = atom({
+	key: 'selections',
+	default: {},
+});
