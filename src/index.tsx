@@ -12,6 +12,7 @@ import { AuthProvider } from 'context/Auth';
 import { ThemeProvider } from 'styled-components';
 import { tokens } from 'designSystem/themes/tokens';
 import { SelectedFieldProvider } from 'context/SelectedFields';
+import { AnswersProvider } from 'context/Answers';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement,
@@ -22,13 +23,15 @@ root.render(
 		<ErrorBoundary FallbackComponent={ErrorFallback}>
 			<ThemeProvider theme={tokens}>
 				<GlobalStyle />
-				<SelectedFieldProvider>
-					<AuthProvider>
-						<RecoilRoot>
-							<Router />
-						</RecoilRoot>
-					</AuthProvider>
-				</SelectedFieldProvider>
+				<AnswersProvider>
+					<SelectedFieldProvider>
+						<AuthProvider>
+							<RecoilRoot>
+								<Router />
+							</RecoilRoot>
+						</AuthProvider>
+					</SelectedFieldProvider>
+				</AnswersProvider>
 			</ThemeProvider>
 		</ErrorBoundary>
 	</React.StrictMode>,

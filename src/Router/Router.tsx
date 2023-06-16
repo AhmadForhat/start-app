@@ -1,10 +1,5 @@
-// import { useContext } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-// import { AuthContext } from 'context/Auth';
 import { publicPages } from './utils';
-
-import { Wrapper } from 'designSystem';
 
 const Router = (): JSX.Element => {
 	// const { isLogged } = useContext(AuthContext);

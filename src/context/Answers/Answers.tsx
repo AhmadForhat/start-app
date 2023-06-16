@@ -1,32 +1,37 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, type ReactNode } from 'react';
 
-export interface ResultContextProps {
-	results: { [questionId: string]: string };
-	setResults: (results: { [questionId: string]: string }) => void;
+interface ISelection {
+	questionId: string;
+	answer: string;
 }
 
-export interface ResultProviderProps {
+export interface AnswersContextProps {
+	selections: ISelection[] | [];
+	setSelections: (e: any) => void;
+}
+
+export interface AnswersProviderProps {
 	children: ReactNode;
 }
 
-export const ResultContext = createContext<ResultContextProps>({
-	results: {},
-	setResults: () => null,
+export const AnswersContext = createContext<AnswersContextProps>({
+	selections: [],
+	setSelections: () => null,
 });
 
-export const ResultProvider = ({
+export const AnswersProvider = ({
 	children,
-}: ResultProviderProps): JSX.Element => {
-	const [results, setResults] = useState({});
+}: AnswersProviderProps): JSX.Element => {
+	const [selections, setSelections] = useState<ISelection[] | []>([]);
 
 	return (
-		<ResultContext.Provider
+		<AnswersContext.Provider
 			value={{
-				results,
-				setResults,
+				selections,
+				setSelections,
 			}}
 		>
 			{children}
-		</ResultContext.Provider>
+		</AnswersContext.Provider>
 	);
 };
