@@ -14,7 +14,9 @@ export const ResultContext = createContext<ResultContextProps>({
 	setResults: () => null,
 });
 
-export const ResultProvider = ({ children }: ResultProviderProps): JSX.Element => {
+export const ResultProvider = ({
+	children,
+}: ResultProviderProps): JSX.Element => {
 	const [results, setResults] = useState({});
 
 	return (
