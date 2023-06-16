@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, ContainerOption } from './Options.styles';
 
 export interface Option {
-	id: string;
+	optionId: string;
 	content: string;
 }
 
@@ -19,15 +19,15 @@ export const Options = ({ data, onSelect }: OptionsProps): JSX.Element => {
 	return (
 		<Container>
 			{data.map((item) => (
-				<ContainerOption key={item.id}>
+				<ContainerOption key={item.optionId}>
 					<input
-						id={item.id}
+						id={item.optionId}
 						type="radio"
 						name="aswern"
-						value={item.id}
+						value={item.optionId}
 						onChange={handleSelect}
 					/>
-					<label htmlFor={item.id}>{item.content}</label>
+					<label htmlFor={item.optionId}>{item.content}</label>
 				</ContainerOption>
 			))}
 		</Container>

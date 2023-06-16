@@ -20,26 +20,23 @@ import { BackIcon } from 'designSystem/icons';
 import { NextIcon } from 'designSystem/icons';
 import { Options } from './components/Options';
 import { QuitConfirmation } from './components/QuitComfirmation';
-
-// interface QuitConformation {
-// 	clickedOn?: () => void;
-// }
+import ResultContext from 'context/Answers/Answers.tsx';
 
 const QUESTIONS_LIST = Array.from({ length: 30 }, (_, i) => ({
-	id: (i + 1).toString(),
+	questionId: (i + 1).toString(),
 	question: `What are the features of programming language ${i + 1}?`,
 	code: `for i in ${i + 1}:\n\tprint(i)`,
 	options: [
 		{
-			id: '1',
+			optionId: (i + 1).toString() + '-1',
 			content: `A lot of features for language ${i + 1}`,
 		},
 		{
-			id: '2',
+			optionId: (i + 1).toString() + '-2',
 			content: `Many features for language ${i + 1}`,
 		},
 		{
-			id: '3',
+			optionId: (i + 1).toString() + '-3',
 			content: `Another features for language ${i + 1}`,
 		},
 	],
@@ -58,7 +55,6 @@ export const Questions = () => {
 	const currentQuestion = QUESTIONS_LIST[currentPage - 1];
 
 	const goToResult = () => navigate('/results');
-	const goBack = () => navigate('/select-fields');
 	const handleNextQuestion = () => {
 		if (currentPage < totalPages) {
 			setCurrentPage(currentPage + 1);
