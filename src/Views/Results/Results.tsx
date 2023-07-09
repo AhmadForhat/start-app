@@ -6,6 +6,7 @@ import {
 	ContainerLoading,
 	ContainerButtons,
 	GradeCircle,
+	Texts,
 } from './Results.styles';
 import { useRecoilState } from 'recoil';
 import { fieldsAtom, selectionsAtom } from 'context/RecoilAtoms';
@@ -30,7 +31,8 @@ export const Results = () => {
 	const startNew = () => navigate('/questions');
 	const getCertified = () => navigate('/questions');
 
-	const grade = 66;
+	const grade = 60;
+	const rightOnes = 22;
 
 	const isLoading = false;
 	if (isLoading) {
@@ -51,48 +53,36 @@ export const Results = () => {
 							text={`${grade}%`}
 							styles={{
 								path: {
-									// Path color
-									stroke: `rgba(62, 152, 199, ${grade / 100})`,
-									// Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-									strokeLinecap: 'butt',
-									// Customize transition animation
+									stroke: `#E14A4A`,
 									transition: 'stroke-dashoffset 0.5s ease 0s',
-									// Rotate the path
-									transform: 'rotate(0.25turn)',
-									transformOrigin: 'center center',
+									strokeWidth: '6px',
 								},
-								// Customize the circle behind the path, i.e. the "total progress"
 								trail: {
-									// Trail color
 									stroke: '#7D837E',
 									transformOrigin: 'center center',
 									strokeWidth: '6px',
 								},
-								// Customize the text
 								text: {
-									// Text color
-									fill: 'black',
-									// Text size
-									fontSize: '16px',
-									position: 'absolute',
-									// Adjust font
-									fontFamily: 'Arial, sans-serif',
-								},
-								// Customize background - only used when the `background` prop is true
-								background: {
-									fill: '#E14A4A',
+									fontSize: '14px',
+									textAlign: 'center',
+									fontFamily: 'Myriad Pro, Arial, sans-serif',
 								},
 							}}
 						/>
 					</GradeCircle>
-					<h1>CONGRADUATIONS!</h1>
-					<h2>Your Score</h2>
-					<p>
-						You Did a great job! Your ara ready for the next step. Get certifies
-						by clicking below.
-					</p>
+					<Texts>
+						<p className="t1">CONGRADUATIONS!</p>
+						<p className="t2">Your Score</p>
+						<p>
+							<span className="t3">{rightOnes}</span> / 30
+						</p>
+						<p className="t4">
+							You Did a great job! Your ara ready for the next step. Get
+							certifies by clicking below.
+						</p>
+					</Texts>
 					<ContainerButtons>
-						<Button text={'CIEW TEST RESULT'} onClick={viewResult} fullSize />
+						<Button text={'VIEW TEST RESULT'} onClick={viewResult} fullSize />
 						<Button text={'START NEW TEST'} onClick={startNew} fullSize />
 						<Button text={'GET CERTIFIED'} onClick={getCertified} fullSize />
 					</ContainerButtons>

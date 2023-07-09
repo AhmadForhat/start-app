@@ -27,14 +27,35 @@ export const ContainerButtons = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
+	margin: 60px 0px 60px 0px;
 `;
 
 export const GradeCircle = styled.div`
 	margin: 32px auto;
-	display: flex;
-	border-radius: 100%;
 	height: 150px;
 	width: 150px;
-	justify-content: center;
-	align-items: center;
+`;
+
+export const Texts = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	color: ${tokens.color.gray.default};
+	text-align: center;
+	gap: 10px;
+	font-weight: ${tokens.fontWeight.regular};
+	.t1 {
+		font-size: ${tokens.fontSize.large};
+	}
+	.t2 {
+		font-size: ${tokens.fontSize.medium};
+	}
+	.t3 {
+		color: #3ac417;
+		font-size: ${tokens.fontSize.medium};
+	}
+	.t4 {
+		margin-top: 20px;
+		font-size: ${tokens.fontSize.small};
+	}
 `;
