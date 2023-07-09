@@ -15,6 +15,10 @@ export const ContainerTitle = styled.div`
 		width: 24px;
 		height: 24px;
 	}
+	.share {
+		width: 24px;
+		height: 24px;
+	}
 `;
 
 interface TitleProps {

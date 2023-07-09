@@ -20,3 +20,4 @@ export * from './NextIcon';
 export * from './ComputerWhite';
 export * from './Computer';
 export * from './CheckIcon';
+export * from './Share';
