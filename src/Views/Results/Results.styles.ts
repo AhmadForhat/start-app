@@ -34,6 +34,9 @@ export const GradeCircle = styled.div`
 	margin: 32px auto;
 	height: 150px;
 	width: 150px;
+	.CircularProgressbar {
+		text-align: center;
+	}
 `;
 
 export const Texts = styled.div`

@@ -1,6 +1,9 @@
 import React from 'react';
 import { FilesAnimation } from 'designSystem/atoms/FilesAnimation';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import {
+	buildStyles,
+	CircularProgressbarWithChildren,
+} from 'react-circular-progressbar';
 import {
 	Container,
 	ContainerLoading,
@@ -31,7 +34,7 @@ export const Results = () => {
 	const startNew = () => navigate('/questions');
 	const getCertified = () => navigate('/questions');
 
-	const grade = 60;
+	const grade = 80;
 	const rightOnes = 22;
 
 	const isLoading = false;
@@ -48,27 +51,25 @@ export const Results = () => {
 				<Navbar title="RESULT" onBack={goBack} share={share} />
 				<Container>
 					<GradeCircle>
-						<CircularProgressbar
+						<CircularProgressbarWithChildren
 							value={grade}
-							text={`${grade}%`}
-							styles={{
-								path: {
-									stroke: `#E14A4A`,
-									transition: 'stroke-dashoffset 0.5s ease 0s',
-									strokeWidth: '6px',
-								},
-								trail: {
-									stroke: '#7D837E',
-									transformOrigin: 'center center',
-									strokeWidth: '6px',
-								},
-								text: {
-									fontSize: '14px',
-									textAlign: 'center',
-									fontFamily: 'Myriad Pro, Arial, sans-serif',
-								},
-							}}
-						/>
+							styles={buildStyles({
+								pathColor: '#E14A4A',
+								trailColor: '#7D837E',
+								strokeLinecap: 'butt',
+								pathTransition: 'stroke-dashoffset 0.5s ease 0s',
+							})}
+						>
+							<div
+								style={{
+									fontSize: '16px',
+									fontFamily: 'poppins, Arial, sans-serif',
+									fontWeight: '200',
+								}}
+							>
+								{grade}%
+							</div>
+						</CircularProgressbarWithChildren>
 					</GradeCircle>
 					<Texts>
 						<p className="t1">CONGRADUATIONS!</p>
