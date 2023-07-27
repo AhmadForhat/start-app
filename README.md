@@ -12,6 +12,7 @@ git clone https://github.com/AhmadForhat/start-app.git
 2. Navigate to the project directory and install the dependencies:
 ```bash
 cd start-app
+npm install -g yarn
 yarn install
 ```
 
