@@ -10,6 +10,8 @@ export interface ButtonProps {
 	isLoading?: boolean;
 	fullSize?: boolean;
 	disabled?: boolean;
+	background_color?: string;
+	text_color?: string;
 }
 
 export const Button = ({
@@ -19,6 +21,8 @@ export const Button = ({
 	variant = 'primary',
 	fullSize = false,
 	disabled,
+	background_color,
+	text_color,
 }: ButtonProps): JSX.Element => {
 	return (
 		<Container
@@ -26,6 +30,8 @@ export const Button = ({
 			onClick={onClick}
 			fullSize={fullSize}
 			disabled={disabled}
+			background_color={background_color}
+			text_color={text_color}
 		>
 			{isLoading ? <Loading size={24} /> : text}
 		</Container>

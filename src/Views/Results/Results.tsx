@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FilesAnimation } from 'designSystem/atoms/FilesAnimation';
 import {
 	buildStyles,
@@ -16,6 +16,7 @@ import { fieldsAtom, selectionsAtom } from 'context/RecoilAtoms';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import { Button, Wrapper } from 'designSystem';
 import { useNavigate } from 'react-router-dom';
+import { StartNew } from './components/StartNew';
 
 export const Results = () => {
 	const navigate = useNavigate();
@@ -34,8 +35,11 @@ export const Results = () => {
 	const startNew = () => navigate('/questions');
 	const getCertified = () => navigate('/questions');
 
-	const grade = 80;
-	const rightOnes = 22;
+	const [isConfirmExitModalOpen, setConfirmExitModalOpen] = useState(false);
+
+	const rightOnes = 20;
+	const fullgrade = 30;
+	const grade = Math.round((rightOnes / fullgrade) * 100);
 
 	const isLoading = false;
 	if (isLoading) {
@@ -48,6 +52,11 @@ export const Results = () => {
 	} else {
 		return (
 			<Wrapper>
+				<StartNew
+					isVisible={isConfirmExitModalOpen}
+					onClose={() => setConfirmExitModalOpen(false)}
+					onSubmit={goToResult}
+				/>
 				<Navbar title="RESULT" onBack={goBack} share={share} />
 				<Container>
 					<GradeCircle>
@@ -83,8 +92,19 @@ export const Results = () => {
 						</p>
 					</Texts>
 					<ContainerButtons>
-						<Button text={'VIEW TEST RESULT'} onClick={viewResult} fullSize />
-						<Button text={'START NEW TEST'} onClick={startNew} fullSize />
+						<Button
+							text={'VIEW TEST RESULT'}
+							onClick={viewResult}
+							fullSize
+							background_color={'white'}
+							text_color={'black'}
+						/>
+						<Button
+							text={'START NEW TEST'}
+							onClick={startNew}
+							fullSize
+							background_color="grey"
+						/>
 						<Button text={'GET CERTIFIED'} onClick={getCertified} fullSize />
 					</ContainerButtons>
 				</Container>
