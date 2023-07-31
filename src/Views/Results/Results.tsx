@@ -16,7 +16,7 @@ import { fieldsAtom, selectionsAtom } from 'context/RecoilAtoms';
 import { Navbar } from 'designSystem/molecules/Navbar';
 import { Button, Wrapper } from 'designSystem';
 import { useNavigate } from 'react-router-dom';
-import { StartNew } from './components/StartNew';
+import { StartNew } from './components/StartNew/StartNew';
 
 export const Results = () => {
 	const navigate = useNavigate();
@@ -35,11 +35,17 @@ export const Results = () => {
 	const startNew = () => navigate('/questions');
 	const getCertified = () => navigate('/questions');
 
-	const [isConfirmExitModalOpen, setConfirmExitModalOpen] = useState(false);
+	const [isModalOpen, setModalOpen] = useState(false);
+	const ReTake = () => navigate('/questions');
+	const NewTest = () => navigate('/select-fields');
 
 	const rightOnes = 20;
 	const fullgrade = 30;
 	const grade = Math.round((rightOnes / fullgrade) * 100);
+
+	const handleNewTest = () => {
+		setModalOpen(true);
+	};
 
 	const isLoading = false;
 	if (isLoading) {
@@ -53,9 +59,9 @@ export const Results = () => {
 		return (
 			<Wrapper>
 				<StartNew
-					isVisible={isConfirmExitModalOpen}
-					onClose={() => setConfirmExitModalOpen(false)}
-					onSubmit={goToResult}
+					isVisible={isModalOpen}
+					OnReTake={ReTake}
+					onNewTest={NewTest}
 				/>
 				<Navbar title="RESULT" onBack={goBack} share={share} />
 				<Container>
@@ -99,12 +105,13 @@ export const Results = () => {
 							background_color={'white'}
 							text_color={'black'}
 						/>
-						<Button
-							text={'START NEW TEST'}
-							onClick={startNew}
-							fullSize
-							background_color="grey"
-						/>
+						<div onClick={handleNewTest}>
+							<Button
+								text={'START NEW TEST'}
+								fullSize
+								background_color="grey"
+							/>
+						</div>
 						<Button text={'GET CERTIFIED'} onClick={getCertified} fullSize />
 					</ContainerButtons>
 				</Container>

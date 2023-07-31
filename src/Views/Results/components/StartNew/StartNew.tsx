@@ -5,25 +5,25 @@ import { Container, ContainerButtons } from './StartNew.styles';
 
 interface StartNewProps {
 	isVisible: boolean;
-	onClose: () => void;
-	onSubmit: () => void;
+	OnReTake: () => void;
+	onNewTest: () => void;
 }
 
-export const StartNew = ({ isVisible, onClose, onSubmit }: StartNewProps) => {
+export const StartNew = ({ isVisible, OnReTake, onNewTest }: StartNewProps) => {
 	return (
-		<ModalContainer
-			visible={isVisible}
-			onClose={onClose}
-			height="auto-complete"
-		>
+		<ModalContainer visible={isVisible} height="auto-complete">
 			<Container>
 				<h2>Are you sure you want to quit?</h2>
 				<p>
 					If you quit, your progress might be lost. Do you still wish to quit?
 				</p>
 				<ContainerButtons>
-					<Button variant="secondary" text="Yes" onClick={onSubmit} />
-					<Button text="No" onClick={onClose} />
+					<Button
+						variant="secondary"
+						text="RETAKE SAME TEST"
+						onClick={OnReTake}
+					/>
+					<Button text="NEW TEST" onClick={onNewTest} />
 				</ContainerButtons>
 			</Container>
 		</ModalContainer>
