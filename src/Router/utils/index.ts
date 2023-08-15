@@ -4,6 +4,7 @@ import { WalkingThrough } from 'Views/WalkingThrough';
 import { SelectFields } from 'Views/SelectFields';
 import { SelectLevel } from 'Views/SelectLevel';
 import { ReadyPage } from 'Views/ReadyPage';
+import { ResultDetails } from 'Views/ResultDetails';
 
 export const publicPages = [
 	{
@@ -41,5 +42,11 @@ export const publicPages = [
 		name: 'Results',
 		path: '/results',
 		element: Results,
+	},
+	{
+		id: 'resultdetails',
+		name: 'ResultDetails',
+		path: '/resultdetails',
+		element: ResultDetails,
 	},
 ];

@@ -32,7 +32,6 @@ export const Results = () => {
 	const goBack = () => navigate('/select-fields');
 	const share = () => navigate('/select-fields');
 	const viewResult = () => navigate('/questions');
-	const startNew = () => navigate('/questions');
 	const getCertified = () => navigate('/questions');
 
 	const [isModalOpen, setModalOpen] = useState(false);

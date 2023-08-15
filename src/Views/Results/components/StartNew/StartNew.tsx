@@ -13,10 +13,7 @@ export const StartNew = ({ isVisible, OnReTake, onNewTest }: StartNewProps) => {
 	return (
 		<ModalContainer visible={isVisible} height="auto-complete">
 			<Container>
-				<h2>Are you sure you want to quit?</h2>
-				<p>
-					If you quit, your progress might be lost. Do you still wish to quit?
-				</p>
+				<h2>Which test you want to START?</h2>
 				<ContainerButtons>
 					<Button
 						variant="secondary"
