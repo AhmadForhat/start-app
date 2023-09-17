@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Container,
 	ContainerCollapseButton,
@@ -12,10 +12,11 @@ import { UpIcon } from 'designSystem/icons';
 import { CheckIcon } from 'designSystem/icons';
 import { Computer } from 'designSystem/icons';
 import { ComputerWhite } from 'designSystem/icons';
+import { api } from 'services';
 
 interface IDropdownSelect {
+	id: string;
 	title: string;
-	sublist?: string[];
 	onChangeCategory: (category: string) => void;
 	onChangeSubject: (subject: string) => void;
 	selectedCategory: string;
@@ -23,20 +24,33 @@ interface IDropdownSelect {
 }
 
 export const DropdownSelect = ({
+	id,
 	title,
-	sublist,
 	onChangeCategory,
 	onChangeSubject,
 	selectedCategory,
 	selectedSubject,
 }: IDropdownSelect): JSX.Element => {
 	const [isOpen, setOpen] = useState(false);
+	const [subjects, setSubjects] = useState<any>([]);
 	const toggleOpen = () => {
 		setOpen(!isOpen);
-		!!sublist?.length && onChangeCategory(title);
+		onChangeCategory(id);
 	};
 
-	const isActived = selectedCategory === title;
+	const isActived = selectedCategory === id;
+
+	const getSubjects = async () => {
+		const { data } = await api(`/subjects/categories/${id}`);
+		setSubjects(data);
+	};
+
+	useEffect(() => {
+		if (isOpen) {
+			getSubjects();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isOpen]);
 
 	return (
 		<Container>
@@ -55,13 +69,13 @@ export const DropdownSelect = ({
 			</ContainerCollapseButton>
 			{isActived && isOpen && (
 				<List>
-					{sublist?.map((item: string) => (
+					{subjects?.map((subject: any) => (
 						<Item
-							key={item}
-							selected={selectedSubject === item}
-							onClick={() => onChangeSubject(item)}
+							key={subject._id}
+							selected={selectedSubject === subject._id}
+							onClick={() => onChangeSubject(subject._id)}
 						>
-							{item}
+							{subject.content}
 							<CheckIcon className="check-icon" />
 						</Item>
 					))}

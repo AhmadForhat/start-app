@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
 	Container,
@@ -11,45 +11,12 @@ import { Logo } from 'designSystem/atoms/Logo';
 import { Button, Wrapper } from 'designSystem';
 import { useRecoilState } from 'recoil';
 import { fieldsAtom } from 'context/RecoilAtoms';
-
-const BUSINESS_ENUM = {
-	title: 'BUSINESS',
-};
-
-const TECHNOLOGY_ENUM = {
-	title: 'TECHNOLOGY',
-	sublist: [
-		'Python Developer',
-		'Java Developer',
-		'System Analyst',
-		'Cyber Security Analyst',
-		'Database Developer',
-	],
-};
-
-const DIGITAL_MARKETING_ENUM = {
-	title: 'DIGITAL MARKETING',
-};
-
-const HOSPITALITY_ENUM = {
-	title: 'HOSPITALITY',
-};
-
-const SOFT_SKILLS_ENUM = {
-	title: 'SOFT SKILLS',
-};
-
-const fieldsCategoryAndSubjects = [
-	BUSINESS_ENUM,
-	TECHNOLOGY_ENUM,
-	DIGITAL_MARKETING_ENUM,
-	HOSPITALITY_ENUM,
-	SOFT_SKILLS_ENUM,
-];
+import { api } from 'services';
 
 export const SelectFields = () => {
 	const navigate = useNavigate();
 	const goToSelectLevel = () => navigate('/select-level');
+	const [categories, setCategories] = useState<any>([]);
 	const [fields, setFields] = useRecoilState(fieldsAtom);
 
 	const handleChangeCategory = (value: string) =>
@@ -57,6 +24,15 @@ export const SelectFields = () => {
 
 	const handleChangeSubject = (value: string) =>
 		setFields({ ...fields, subject: value });
+
+	const getFields = async () => {
+		const { data } = await api.get('/categories');
+		setCategories(data);
+	};
+
+	useEffect(() => {
+		getFields();
+	}, []);
 
 	return (
 		<Wrapper>
@@ -66,14 +42,15 @@ export const SelectFields = () => {
 					<Logo />
 				</ContainerLogo>
 				<h2>SELECT CATEGORY</h2>
-				{fieldsCategoryAndSubjects.map((fieldCategoryAndSubjects) => (
+				{categories.map((category: any) => (
 					<DropdownSelect
-						key={fieldCategoryAndSubjects.title}
+						key={category.id}
 						onChangeCategory={handleChangeCategory}
 						onChangeSubject={handleChangeSubject}
 						selectedCategory={fields.category}
 						selectedSubject={fields.subject}
-						{...fieldCategoryAndSubjects}
+						title={category.content}
+						id={category._id}
 					/>
 				))}
 				<ContainerButton>

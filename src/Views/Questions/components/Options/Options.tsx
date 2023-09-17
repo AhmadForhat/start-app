@@ -25,19 +25,19 @@ export const Options = ({
 
 	return (
 		<Container>
-			{data.map((item) => {
+			{data.map((item: any) => {
 				return (
 					<ContainerOption key={item.optionId}>
 						<input
-							key={item.optionId}
-							id={item.optionId}
+							key={item._id}
+							id={item._id}
 							type="radio"
 							name={`${questionId}-answer`}
-							value={item.optionId}
+							value={item._id}
 							onChange={handleSelect}
-							checked={actived === item.optionId}
+							checked={actived === item._id}
 						/>
-						<label htmlFor={item.optionId}>{item.content}</label>
+						<label htmlFor={item._id}>{item.content}</label>
 					</ContainerOption>
 				);
 			})}

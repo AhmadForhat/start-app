@@ -21,38 +21,27 @@ import { NextIcon } from 'designSystem/icons';
 import { Options } from './components/Options';
 import { QuitConfirmation } from './components/QuitComfirmation';
 import { useRecoilState } from 'recoil';
-import { selectionsAtom } from 'context/RecoilAtoms';
-
-const QUESTIONS_LIST: any = Array.from({ length: 30 }, (_, i) => ({
-	questionId: (i + 1).toString(),
-	question: `What are the features of programming language ${i + 1}?`,
-	code: `for i in ${i + 1}:\n\tprint(i)`,
-	options: [
-		{
-			optionId: (i + 1).toString() + '-1',
-			content: `A lot of features for language ${i + 1}`,
-		},
-		{
-			optionId: (i + 1).toString() + '-2',
-			content: `Many features for language ${i + 1}`,
-		},
-		{
-			optionId: (i + 1).toString() + '-3',
-			content: `Another features for language ${i + 1}`,
-		},
-	],
-}));
+import { fieldsAtom, selectionsAtom } from 'context/RecoilAtoms';
+import { api } from 'services';
 
 export const Questions = () => {
 	const [{ min, sec }, setCount] = useState({ min: 40, sec: 0 });
 	const [currentPage, setCurrentPage] = useState(1);
 	const [isConfirmExitModalOpen, setConfirmExitModalOpen] = useState(false);
 	const [selections, setSelections] = useRecoilState<any>(selectionsAtom);
-	const totalPages = 30;
-	const progress = ((Object.keys(selections).length + 1) / totalPages) * 100;
 	const navigate = useNavigate();
+	const [fields] = useRecoilState(fieldsAtom);
+	const [questions, setQuestions] = useState<any>([]);
+	const [currentQuestion, setCurrentQuestion] = useState<any>({
+		options: [],
+		title: '',
+	});
 
-	const currentQuestion = QUESTIONS_LIST[currentPage - 1];
+	const totalPages = questions.length;
+
+	const progress = ((Object.keys(selections).length + 1) / totalPages) * 100;
+
+	const goBack = () => navigate('/select-level');
 
 	const goToResult = () => navigate('/results');
 	const handleNextQuestion = () => {
@@ -65,6 +54,23 @@ export const Questions = () => {
 			setCurrentPage(currentPage - 1);
 		}
 	};
+
+	const getQuestions = async () => {
+		const { data } = await api.get(
+			`/questions/subjects/${fields.subject}/levels/${fields.level}`,
+		);
+
+		setQuestions(data);
+	};
+
+	useEffect(() => {
+		if (fields.subject && fields.level) {
+			getQuestions();
+		} else {
+			goBack();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [fields]);
 
 	useEffect(() => {
 		const timerId = setInterval(() => {
@@ -87,6 +93,13 @@ export const Questions = () => {
 	const handleSkip = () => {
 		setConfirmExitModalOpen(true);
 	};
+
+	useEffect(() => {
+		if (questions.length) {
+			setCurrentQuestion(questions[currentPage - 1]);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [questions, currentPage]);
 
 	return (
 		<>
@@ -118,19 +131,19 @@ export const Questions = () => {
 						<p className="number">
 							{currentPage < 10 ? '0' + currentPage : currentPage}.
 						</p>
-						<p className="text">{currentQuestion.question}</p>
+						<p className="text">{currentQuestion.title}</p>
 					</Question>
 					<Code>
 						<pre className="code">{currentQuestion.code}</pre>
 					</Code>
 					<Options
 						data={currentQuestion.options}
-						questionId={QUESTIONS_LIST[currentPage - 1].questionId}
-						actived={selections[QUESTIONS_LIST[currentPage - 1].questionId]}
+						questionId={currentQuestion.id}
+						actived={selections[currentQuestion.id]}
 						onSelect={(e) => {
 							setSelections({
 								...selections,
-								[QUESTIONS_LIST[currentPage - 1].questionId]: e,
+								[currentQuestion.id]: e,
 							});
 						}}
 					/>

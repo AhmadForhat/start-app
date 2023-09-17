@@ -13,3 +13,20 @@ export const Container = styled.div`
 		font-weight: ${tokens.fontWeight.bold};
 	}
 `;
+
+export const ContainerButton = styled.div`
+	margin-top: 24px;
+`;
+
+export const ContainerResult = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	h3 {
+		display: flex;
+		justify-content: center;
+	}
+`;

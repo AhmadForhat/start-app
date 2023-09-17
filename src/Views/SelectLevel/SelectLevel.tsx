@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
 	Container,
@@ -13,13 +13,11 @@ import { Button, Wrapper } from 'designSystem';
 import { CheckIcon } from 'designSystem/icons';
 import { fieldsAtom } from 'context/RecoilAtoms';
 import { useRecoilState } from 'recoil';
-
-const LEVEL_LIST = {
-	item: ['BEGINNER', 'INTERMEDIATE', 'EXPERT'],
-};
+import { api } from 'services';
 
 export const SelectLevel = () => {
 	const navigate = useNavigate();
+	const [levels, setLevels] = useState<any>([]);
 	const goToStart = () => navigate('/ready-page');
 	const goBack = () => navigate('/select-fields');
 	const [fields, setFields] = useRecoilState(fieldsAtom);
@@ -28,9 +26,16 @@ export const SelectLevel = () => {
 		setFields({ ...fields, level: item });
 	};
 
+	const getLevels = async () => {
+		const { data } = await api.get(`/levels/subjects/${fields.subject}`);
+		setLevels(data);
+	};
+
 	useEffect(() => {
 		if (!fields.category || !fields.subject) {
 			goBack();
+		} else {
+			getLevels();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fields]);
@@ -46,14 +51,16 @@ export const SelectLevel = () => {
 				</ContainerLogo>
 				<h2>SELECT LEVEL</h2>
 				<ContainerList>
-					{LEVEL_LIST.item.map((item) => (
+					{levels?.map((level: any) => (
 						<Item
-							key={item}
-							selected={item === selectedItem}
-							onClick={() => handleChange(item)}
+							key={level._id}
+							selected={level._id === selectedItem}
+							onClick={() => handleChange(level._id)}
 						>
-							{item}
-							{item === selectedItem && <CheckIcon className="check-icon" />}
+							{level.content}
+							{level._id === selectedItem && (
+								<CheckIcon className="check-icon" />
+							)}
 						</Item>
 					))}
 				</ContainerList>
